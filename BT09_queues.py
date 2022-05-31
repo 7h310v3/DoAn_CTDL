@@ -3,28 +3,17 @@ class Queues:
         self.items = []
         print("- Đã tạo danh sách -")
 
-    def Tình_trạng_danh_sách(self):
-        """
-            Kiểm tra xem danh sách có phần tử hay chưa
-            Trả về True nếu có phần tử và False nếu không có phần tử nào
-        """
-        length = len(self.items)
-        if length == 0:
-            print("Danh sách trống")
-        else:
-            print("Danh sách hàng chờ có " + str(length) + " phần tử")
+    # Kiểm tra queue rỗng hay không
+    def is_empty(self):
+        return len(self.items) == 0
 
-    def Số_lượng_phần_tử(self):
-        """
-            Số lượng phần tử trong hàng chờ
-        """ 
-        print(len(self.items))
+    # Kiểm tra số phần tử có trong queue
+    def __len__(self):
+        return len(self.items)
     
-    def Thêm_phần_tử(self, item):
-        """
-            Thêm phần tử vào hàng chờ
-        """ 
-        self.items.append(item)
+    # Thêm 1 phần tử vào đỉnh stack
+    def push(self, x):
+        self.items.append(x)
         print(" +\n Đã thêm '{}' vào danh sách\n Danh sách hiện có {} phần tử\n".format(item, len(self.items)))
 
     def Lấy_phần_tử(self):
