@@ -14,7 +14,7 @@ class Queues:
     # Thêm 1 phần tử vào đỉnh stack
     def push(self, x):
         self.items.append(x)
-        print(" +\n Đã thêm '{}' vào danh sách\n Danh sách hiện có {} phần tử\n".format(item, len(self.items)))
+        print(" +\n Đã thêm '{}' vào danh sách\n Danh sách hiện có {} phần tử\n".format(x, len(self.items)))
 
     def Lấy_phần_tử(self):
         """
