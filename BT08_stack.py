@@ -40,6 +40,7 @@ def main():
         print("4. Lấy giá trị đỉnh của stack")
         print("5. Tính độ dài của stack")
         print("6. Hiển thị các phần tử của stack")
+        print("0. Để thoát!")
     
         key = int(input("Nhập lựa chọn: "))
         if key == 1:
@@ -71,6 +72,8 @@ def main():
                 print("\nStack rỗng!\n")
             else:
                 print( StkArray.__str__())
+        if key == 0:
+            break
 
 
 if __name__ == "__main__":
