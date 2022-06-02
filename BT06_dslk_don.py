@@ -13,27 +13,49 @@ class LinkedList:
     # Hàm khởi tạo head 
     def __init__(self): 
         self.head = None
+
+    # Kiểm tra danh sách rỗng hay không
+    def is_empty(self):
+        return self.head == 0
   
     # Hàm này in nội dung của danh sách liên kết 
     # Bắt đầu từ head 
-    def printList(self): 
+    def print_list(self): 
         temp = self.head 
         while (temp): 
             print (temp.data) 
             temp = temp.next
+
+    # Thêm phẩn tử vào danh sách
+    def push(self, data):
+        pass
+
+    # Xóa phần tử nào đó trong danh sách
+    def remove(self, data):
+        pass
+
+    # Chèn phần tử vào danh sách
+    def insert(self, data):
+        pass
+
+    # Cập nhật
+    def update(self, located,data):
+        pass
+
+    # Xóa hết các phần tử có trong danh sách
+    def remove_all(self):
+        pass
+    
+    # Tìm giá trị
+    def search(self, data):
+        pass
+
   
 def main():
     # Bắt đầu với ds rỗng 
-    llist = LinkedList() 
-  
-    llist.head = Node(4) 
-    second = Node(2) 
-    third = Node(5) 
-  
-    llist.head.next = second; # Liên kết node thứ nhất vs node thứ 2 
-    second.next = third; # Liên kết node thứ 2 với thứ 3 
-  
-    llist.printList() 
+    ds_don = LinkedList()
+
+    print(ds_don.is_empty())
 
 
   

@@ -1,6 +1,6 @@
 import numpy as np
 
-def diChuyen(x:int, y:int, dem:int, A:np, n:int, X:list, Y:list):
+def diChuyen(x, y, dem, A, n, X, Y):
     dem += 1
     A[x][y] = dem
     for i in range(8):
