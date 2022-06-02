@@ -30,8 +30,27 @@ class LinkedList:
             self.last = node
 
     # Chèn phần tử vào danh sách
-    def insert(self, data):
-        pass
+    def insert(self, address,data):
+        node = Node(data)
+        head = None
+        now = self.head
+        count = 0
+        while count < address and now != None:
+            count += 1
+            head = now
+            now = now.next
+        if head == None:
+            node.next = self.head
+            self.head = node
+            if self.last == None:
+                self.last = node
+        else:
+            if now == None:
+                self.last.next = node
+                self.last = node
+            else:
+                head.next = node
+                node.next = now
 
     # Xóa phần tử nào đó trong danh sách
     def remove(self, data):
@@ -53,7 +72,7 @@ class LinkedList:
     def print_list(self):
         flag = True
         now = self.head
-        if self.head != None:
+        if now != None:
             while (now): 
                 if flag:
                     print("Các phẩn tử trong danh sách là:[", now.data, end = " ")
@@ -72,18 +91,30 @@ def main():
     # Bắt đầu với ds rỗng 
     ds_don = LinkedList()
 
-    print(ds_don.is_empty())
+    while True:
+        print("1. Kiểm tra danh sách rỗng.")
+        print("2. Thêm 1 phần tử vào cuối danh sách.")
+        print("3. Lấy 1 phần tử từ danh sách.")
+        print("5. Tính độ dài của danh sách.")
+        print("6. Hiển thị các phần tử của danh sách.")
+        print("0. Để thoát!")
+    
+        key = int(input("Nhập lựa chọn: "))
+        if key == 1:
+            if ds_don.is_empty():
+                print("\nDanh sách rỗng!\n")
+            else:
+                print("\nDanh sách chứa phần tử!\n")
+        if key == 2:
+            tmp = int(input("Nhập phần tử muốn thêm: "))
+            ds_don.push(tmp)
+        if key == 3:
+            pass
 
-    ds_don.push(6)
-    ds_don.push(8)
-    ds_don.push(10)
-
-    print(ds_don.is_empty())
-
-    ds_don.print_list()
-
+        if key == 6:
+            print(ds_don.print_list())
+        if key == 0:
+            break
   
 if __name__ == "__main__":
     main()
-
-    
