@@ -51,12 +51,18 @@ class LinkedList:
     
     # In ra danh sách
     def print_list(self):
+        flag = True
         now = self.head
         if self.head != None:
-            print("Các phẩn tử trong danh sách là:", end = " ")
             while (now): 
-                print (now.data, end = "\t") 
+                if flag:
+                    print("Các phẩn tử trong danh sách là:[", now.data, end = " ")
+                    flag = False
+                else:
+                    print (" -> ", now.data, end = " ") 
                 now = now.next
+            print("]")
+            
         else:
             print("Danh sách trống!")
 
