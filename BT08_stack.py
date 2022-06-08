@@ -9,7 +9,7 @@ class Stack:
         self.StkArray.append(x)
 
     # Lấy 1 phần tử từ đỉnh stack
-    def pop(self):
+    def pops(self):
         return self.StkArray.pop()
 
     # Kiểm tra stack rỗng hay không
@@ -55,7 +55,7 @@ def main():
             if StkArray.is_empty():
                 print("\nStack rỗng!\n")
             else:
-                StkArray.pop()
+                StkArray.pops()
                 print("\nĐã lấy 1 phần tử!\n")
         if key == 4:
             if StkArray.is_empty():

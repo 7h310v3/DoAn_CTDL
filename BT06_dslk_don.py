@@ -51,6 +51,7 @@ class LinkedList:
             else:
                 head.next = node
                 node.next = now
+                
 
     # Xóa phần tử nào đó trong danh sách
     def remove(self, data):
@@ -110,7 +111,6 @@ def main():
             ds_don.push(tmp)
         if key == 3:
             pass
-
         if key == 6:
             print(ds_don.print_list())
         if key == 0:

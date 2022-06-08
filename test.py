@@ -37,8 +37,7 @@ def main():
     grid = np.zeros([N, N], dtype=int)
     grid = grid.tolist()
     
-    Solution = solve(grid)
-    print(np.matrix(Solution))
+    print(np.matrix(solve(grid)))
 
 if __name__ == "__main__":
     main()
