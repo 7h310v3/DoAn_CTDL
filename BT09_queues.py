@@ -24,7 +24,7 @@ class Queues:
         return "\nCác phần tử trong queue: " + str(self.items) + "\n"
         
 def main():
-    q = Queues()     # Tạo danh sách với tên biến là q
+    q = Queues()     # Tạo queue với tên biến là q
 
     while True:
         print("1. Kiểm tra queue rỗng")
