@@ -31,7 +31,7 @@ def solve(grid):
                     grid[y][x] = 0
 
     return grid
-
+    
 def main():
     N = 8
     grid = np.zeros([N, N], dtype=int)

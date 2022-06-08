@@ -49,7 +49,7 @@ def plot(grid):
     ly = [str(i) for i in Ly]
     Lx = list(string.ascii_uppercase)
     lx = Lx[:l]
-    
+       
     plt.close('all')
     sns.set(font_scale=2)
     plt.figure(figsize=(8, 8))
