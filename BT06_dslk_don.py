@@ -9,7 +9,7 @@ class Node:
   
 # Lớp Danh sách được liên kết chứa một đối tượng Node
 class LinkedList: 
-  
+   
     # Hàm khởi tạo head 
     def __init__(self): 
         self.head = None
