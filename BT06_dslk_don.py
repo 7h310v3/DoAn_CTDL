@@ -51,7 +51,6 @@ class LinkedList:
             else:
                 head.next = node
                 node.next = now
-                
 
     # Xóa phần tử nào đó trong danh sách
     def remove(self, data):
