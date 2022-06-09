@@ -1,5 +1,13 @@
 import numpy as np
+import copy
+import seaborn as sns
+import matplotlib.pyplot as plt
+import string
+from PIL import Image
 
+N = 8
+grid = np.zeros([N, N], dtype=int)
+grid = grid.tolist()
 
 def possible(grid, y, x):
     l = len(grid)
@@ -31,13 +39,26 @@ def solve(grid):
                     grid[y][x] = 0
 
     return grid
-    
-def main():
-    N = 8
-    grid = np.zeros([N, N], dtype=int)
-    grid = grid.tolist()
-    
-    print(np.matrix(solve(grid)))
 
-if __name__ == "__main__":
-    main()
+Solution = solve(copy.deepcopy(grid))
+#print(np.matrix(Solution))
+
+def plot(grid):
+    l = len(grid)
+    Ly = list(range(1, l + 1))[::-1]
+    ly = [str(i) for i in Ly]
+    Lx = list(string.ascii_uppercase)
+    lx = Lx[:l]
+       
+    plt.close('all')
+    sns.set(font_scale=2)
+    plt.figure(figsize=(8, 8))
+    ax = plt.gca()
+    ax.set_aspect(1)
+    plt.title("Bài toán 8 quân hậu", fontsize = 25)
+    sns.heatmap(Solution, linewidths=.8, cbar = False, linecolor='white',
+                cmap='Blues', center=0.4, xticklabels=lx, yticklabels=ly)
+
+x = plot(grid)
+
+Image.save(x)

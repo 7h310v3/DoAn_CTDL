@@ -10,7 +10,7 @@ def main():
     dau = "A"
     giua = "B"
     cuoi = "C"
-    ct = int(input("Nhap so dia: "))
+    ct = int(input("Nhập số đĩa: "))
     SapXep(ct, dau, giua, cuoi)
 
 if __name__ == "__main__":
