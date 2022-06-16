@@ -1,32 +1,69 @@
-import numpy as np
+n = int(input("Nhập số phần tử của bàn cờ mà bạn muốn tạo: "))
 
-def diChuyen(x, y, dem, A, n, X, Y):
-    dem += 1
-    A[x][y] = dem
-    for i in range(8):
-        if (dem == n ** 2):
-            print("Cac buoc di la : \n")
-            print(A)
-            exit(0)
-        u = x + X[i]
-        v = y + Y[i]
-        if (u >= 0 and u < n and v >= 0 and v < n and A[u][v] == 0):
-            diChuyen(u, v, dem, A, n, X, Y)
-    dem -= 1
-    A[x][y] = 0
 
-def main():
-    n = int(input("Nhap n: "))
-    A = np.zeros((n, n), int)
-    X = [-2, -2, -1, -1, 1, 1, 2, 2]
-    Y = [-1, 1, -2, 2, -2, 2, -1, 1]
-    dem = 0
-    print("Nhap vi tri ban dau ")
-    a = int(input("x: "))
-    b = int(input("y: "))
+##Kiểm tra xem i, j có phải là các chỉ mục hợp lệ cho bàn cờ N * N hay không
+def KT(x, y, Ban_co):
+    if (x >= 0 and y >= 0 and x < n and y < n and Ban_co[x][y] == -1):
+        return True
+    return False
 
-    diChuyen(a, b, dem, A, n, X, Y)
-    print("Khong tim thay duong di.")
 
-if __name__ == "__main__":
-    main()
+# In ma trận bàn cờ
+def Giai_phap(n, Ban_co):
+    for i in range(n):
+        for j in range(n):
+            print(Ban_co[i][j], end=' ')
+        print()
+
+
+def solve(n):
+    '''                                                   
+      Giải quyết đường đi của quân Mã bằng phương pháp
+      Backtracking. 
+      Trả về false nếu không có giải pháp
+      Nếu không, trả về true và in giải pháp
+    '''
+
+    # Khởi tạo ma trận Bàn cờ
+    Ban_co = [[-1 for i in range(n)] for i in range(n)]
+    # DiChuyen_x và DiChuyen_y xác định nước đi tiếp theo của quân Mã
+    # DiChuyen_x là giá trị tiếp theo của tọa độ x
+    # DiChuyen_y là giá trị tiếp theo của tọa độ y
+    DiChuyen_x = [2, 1, -1, -2, -2, -1, 1, 2]
+    DiChuyen_y = [1, 2, 2, 1, -1, -2, -2, -1]
+
+    # quân Mã ở vt đầu tiên
+    Ban_co[0][0] = 0
+
+    # Bộ đếm bước đi của quân Mã
+    vi_tri = 1
+
+    # Kiểm tra xem giải pháp có tồn tại hay không
+    if (not solveUtil(n, Ban_co, 0, 0, DiChuyen_x, DiChuyen_y, vi_tri)):
+        print("Không có giải pháp giải quyết!")
+    else:
+        print(Giai_phap(n, Ban_co))
+
+
+def solveUtil(n, Ban_co, x_hientai, y_hientai, DiChuyen_x, DiChuyen_y, vi_tri):
+    '''
+        Dùng đệ quy để giải quyết vấn đề
+    '''
+    if (vi_tri == n ** 2):
+        return True
+
+    # Thử tất cả các bước di chuyển tiếp theo từ tọa độ x, y hiện tại
+    for i in range(n):
+        BDM_x = x_hientai + DiChuyen_x[i]
+        BDM_y = y_hientai + DiChuyen_y[i]
+        if (KT(BDM_x, BDM_y, Ban_co)):
+            Ban_co[BDM_x][BDM_y] = vi_tri
+            if (solveUtil(n, Ban_co, BDM_x, BDM_y, DiChuyen_x, DiChuyen_y, vi_tri + 1)):
+                return True
+
+            # Backtracking
+            Ban_co[BDM_x][BDM_y] = -1
+    return False
+
+
+print(solve(n))
