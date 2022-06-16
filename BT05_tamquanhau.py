@@ -10,7 +10,6 @@ def printSolution(board):
 			print (board[i][j],end=' ')
 		print()
 
-
 def isSafe(board, row, col):
 
 	# Kiểm tra hàng này ở phía bên trái

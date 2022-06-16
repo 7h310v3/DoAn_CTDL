@@ -55,19 +55,7 @@ class LinkedList:
     # Xóa phần tử nào đó trong danh sách
     def remove(self, data):
         pass
-
-    # Cập nhật
-    def update(self, located,data):
-        pass
-
-    # Xóa hết các phần tử có trong danh sách
-    def remove_all(self):
-        pass
-    
-    # Tìm giá trị
-    def search(self, data):
-        pass
-    
+   
     # In ra danh sách
     def print_list(self):
         flag = True
@@ -94,9 +82,7 @@ def main():
     while True:
         print("1. Kiểm tra danh sách rỗng.")
         print("2. Thêm 1 phần tử vào cuối danh sách.")
-        print("3. Lấy 1 phần tử từ danh sách.")
-        print("5. Tính độ dài của danh sách.")
-        print("6. Hiển thị các phần tử của danh sách.")
+        print("3. Hiển thị các phần tử của danh sách.")
         print("0. Để thoát!")
     
         key = int(input("Nhập lựa chọn: "))
@@ -109,8 +95,6 @@ def main():
             tmp = int(input("Nhập phần tử muốn thêm: "))
             ds_don.push(tmp)
         if key == 3:
-            pass
-        if key == 6:
             print(ds_don.print_list())
         if key == 0:
             break
