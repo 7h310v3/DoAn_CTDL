@@ -1,69 +1,89 @@
-n = int(input("Nhập số phần tử của bàn cờ mà bạn muốn tạo: "))
+import numpy as np
+
+# Python program to solve N Queen
+# Problem using backtracking
+
+global N
+N = 8
+
+def printSolution(board):
+	for i in range(N):
+		for j in range(N):
+			print (board[i][j],end=' ')
+		print()
 
 
-##Kiểm tra xem i, j có phải là các chỉ mục hợp lệ cho bàn cờ N * N hay không
-def KT(x, y, Ban_co):
-    if (x >= 0 and y >= 0 and x < n and y < n and Ban_co[x][y] == -1):
-        return True
-    return False
+# A utility function to check if a queen can
+# be placed on board[row][col]. Note that this
+# function is called when "col" queens are
+# already placed in columns from 0 to col -1.
+# So we need to check only left side for
+# attacking queens
+def isSafe(board, row, col):
 
+	# Check this row on left side
+	for i in range(col):
+		if board[row][i] == 1:
+			return False
 
-# In ma trận bàn cờ
-def Giai_phap(n, Ban_co):
-    for i in range(n):
-        for j in range(n):
-            print(Ban_co[i][j], end=' ')
-        print()
+	# Check upper diagonal on left side
+	for i, j in zip(range(row, -1, -1), range(col, -1, -1)):
+		if board[i][j] == 1:
+			return False
 
+	# Check lower diagonal on left side
+	for i, j in zip(range(row, N, 1), range(col, -1, -1)):
+		if board[i][j] == 1:
+			return False
 
-def solve(n):
-    '''
-      Giải quyết đường đi của quân Mã bằng phương pháp
-      Backtracking.
-      Trả về false nếu không có giải pháp
-      Nếu không, trả về true và in giải pháp
-    '''
+	return True
 
-    # Khởi tạo ma trận Bàn cờ
-    Ban_co = [[-1 for i in range(n)] for i in range(n)]
-    # DiChuyen_x và DiChuyen_y xác định nước đi tiếp theo của quân Mã
-    # DiChuyen_x là giá trị tiếp theo của tọa độ x
-    # DiChuyen_y là giá trị tiếp theo của tọa độ y
-    DiChuyen_x = [2, 1, -1, -2, -2, -1, 1, 2]
-    DiChuyen_y = [1, 2, 2, 1, -1, -2, -2, -1]
+def solveNQUtil(board, col):
+	# base case: If all queens are placed
+	# then return true
+	if col >= N:
+		return True
 
-    # quân Mã ở vt đầu tiên
-    Ban_co[0][0] = 0
+	# Consider this column and try placing
+	# this queen in all rows one by one
+	for i in range(N):
 
-    # Bộ đếm bước đi của quân Mã
-    vi_tri = 1
+		if isSafe(board, i, col):
+			# Place this queen in board[i][col]
+			board[i][col] = 1
 
-    # Kiểm tra xem giải pháp có tồn tại hay không
-    if (not solveUtil(n, Ban_co, 0, 0, DiChuyen_x, DiChuyen_y, vi_tri)):
-        print("Không có giải pháp giải quyết!")
-    else:
-        print(Giai_phap(n, Ban_co))
+			# recur to place rest of the queens
+			if solveNQUtil(board, col + 1) == True:
+				return True
 
+			# If placing queen in board[i][col
+			# doesn't lead to a solution, then
+			# queen from board[i][col]
+			board[i][col] = 0
 
-def solveUtil(n, Ban_co, x_hientai, y_hientai, DiChuyen_x, DiChuyen_y, vi_tri):
-    '''
-        Dùng đệ quy để giải quyết vấn đề
-    '''
-    if (vi_tri == n ** 2):
-        return True
+	# if the queen can not be placed in any row in
+	# this column col then return false
+	return False
 
-    # Thử tất cả các bước di chuyển tiếp theo từ tọa độ x, y hiện tại
-    for i in range(n):
-        BDM_x = x_hientai + DiChuyen_x[i]
-        BDM_y = y_hientai + DiChuyen_y[i]
-        if (KT(BDM_x, BDM_y, Ban_co)):
-            Ban_co[BDM_x][BDM_y] = vi_tri
-            if (solveUtil(n, Ban_co, BDM_x, BDM_y, DiChuyen_x, DiChuyen_y, vi_tri + 1)):
-                return True
+# This function solves the N Queen problem using
+# Backtracking. It mainly uses solveNQUtil() to
+# solve the problem. It returns false if queens
+# cannot be placed, otherwise return true and
+# placement of queens in the form of 1s.
+# note that there may be more than one
+# solutions, this function prints one of the
+# feasible solutions.
+def solveNQ():
+	board = np.zeros((N, N), int)
 
-            # Backtracking
-            Ban_co[BDM_x][BDM_y] = -1
-    return False
+	if solveNQUtil(board, 0) == False:
+		print ("Solution does not exist")
+		return False
 
+	printSolution(board)
+	return True
 
-print(solve(n))
+# driver program to test above function
+solveNQ()
+
+# This code is contributed by Divyanshu Mehta
