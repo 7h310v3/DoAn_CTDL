@@ -9,7 +9,7 @@ def merge(left_list, right_list):
         if left_list_index < left_list_length and right_list_index < right_list_length:
             # Kiểm tra giá trị nào từ đầu danh sách nhỏ hơn
             # Nếu phần tử ở đầu danh sách bên trái nhỏ hơn, hãy thêm nó vào
-            # vào danh sách đã sắp xếp 
+            # vào danh sách đã sắp xếp
             if left_list[left_list_index] <= right_list[right_list_index]:
                 sorted_list.append(left_list[left_list_index])
                 left_list_index += 1
@@ -20,12 +20,12 @@ def merge(left_list, right_list):
                 right_list_index += 1
 
         # Nếu đã đến cuối danh sách bên trái
-        # thì thêm các phần tử từ danh sách bên phải 
+        # thì thêm các phần tử từ danh sách bên phải
         elif left_list_index == left_list_length:
             sorted_list.append(right_list[right_list_index])
             right_list_index += 1
         # Nếu đã đến cuối danh sách bên phải
-        # thìthêm các phần tử từ danh sách bên trái 
+        # thìthêm các phần tử từ danh sách bên trái
         elif right_list_index == right_list_length:
             sorted_list.append(left_list[left_list_index])
             left_list_index += 1
@@ -48,9 +48,11 @@ def merge_sort(nums):
     # Hợp nhất các danh sách đã sắp xếp thành một danh sách mới
     return merge(left_list, right_list)
 
+
 def main():
-    arr_t = [5, 6, 8, 2, 3, 9, 12]
+    arr_t = [120, 45, 68, 250, 176]
     arr = merge_sort(arr_t)
-    print("Mảng sau khi sắp xếp là: ", arr)
- if __name__ == '__main__':
-     main()
+    print(arr)
+
+if __name__ == '__main__':
+    main()
