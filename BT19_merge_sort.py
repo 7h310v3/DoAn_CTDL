@@ -52,5 +52,6 @@ def main():
     arr_t = [5, 6, 8, 2, 3, 9, 12]
     arr = merge_sort(arr_t)
     print("Mảng sau khi sắp xếp là: ", arr)
- if __name__ == '__main__':
-     main()
+
+if __name__ == '__main__':
+    main()
